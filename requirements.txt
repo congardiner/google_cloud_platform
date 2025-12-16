@@ -1,7 +1,7 @@
-altair
-polars
 pandas
+polars
 streamlit
-scikit-learn
-numpy
 plotly
+altair
+pyarrow
+great-tables

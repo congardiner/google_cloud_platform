@@ -1,123 +1,81 @@
-# Introduction to Google Cloud Platform (GCP) and Publishing your App
+# Challenge General Information
 
-Introduction and Directions to get Connected to GCP as a student.  Then an example of how to publish your app.
+You can read the details of the challenge at [challenge.md](challenge.md)
 
-This material uses [Polars](https://pola-rs.github.io/polars-book/user-guide/) and focuses [Streamlit](https://streamlit.io/) and dash boarding to introduce the data science app development process.
+## Key Items
 
-## GCP Setup
+- __Due Date:__ 12/17/2025
+- __Work Rules:__ You cannot work with others.  You can ask any question you want in our general channel. The teacher and TA are the only ones who can answer questions. __You cannot use code from other students' apps.__
+- __Product:__ A streamlit app that runs within Docker, builds from your repo, and is published on Google Cloud Platform.
+- __Github Process:__ Each student will fork the challenge repository and create their app. Their GitHub repo will have a link to the Cloud Run URL.
+- __Canvas Process:__ Each student will upload a `.pdf` or `.html` file with their results as described in [challenge.md](challenge.md)
+- Review the [Google Cloud Platform (GCP)](https://github.com/byuibigdata/google_cloud_platform) guide for setup instructions.
 
-### Sign Up
 
-You must have a Google Account to use education credits. If you don't have a Google Account, you can [create one](https://accounts.google.com/signup).
+## Notes & References
 
-### Get Credits
+- [Fork a repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+- [Creating a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
 
-I will send a message from as follows (except the link will work).
 
-```
-Dear Students,
+## Details
 
-Here is the URL you will need to access in order to request a Google Cloud coupon. You will be asked to provide your school email address and name. An email will be sent to you to confirm these details before a coupon is sent to you.
+- Please build dashboards that support a store owner in addressing the following questions (each question will have its own page or tab).
 
-[Student Coupon Retrieval Link]()
+- Excluding fuels, what are the top five products with the highest weekly sales?
+  
+- In the packaged beverage category, which brands should I drop if I must drop some from the store?
+  
+- How do cash customers and credit customers compare?
+  
+- Which products are purchased most often for each customer type?
+  
+- How do the total purchase amounts compare?
+  
+- How does the total number of items compare?
+  
+- Provide the owners of the stores with detailed records a comparison of customer demographics within a specified area around their store using the Census API. Your demographic comparison needs to have at least 10 unique variables.
 
-* You will be asked for a name and email address, which needs to match your school domain. A confirmation email will be sent to you with a coupon code.
-* You can request a coupon from the URL and redeem it until: 1/8/2026
-* Coupon valid through: 9/8/2026
-* You can only request ONE code per unique email address.
 
-Thanks,
+## Minimum Requirements
 
-Mr. John Hathaway
-```
+- All data must leverage Caching.
+- Key Performance Indicators (KPIs) using st.metric() that address the question and provide context for comparisons. A clean summary table using Great Tables. Explore their examples to see the fantastic ideas for summary tables.
+- At least two plotly or Altair graphs that help the user see temporal comparisons.
+- Filters that limit the tables, charts, and KPIs to user-specified months and variable levels of interest in each question.
+- Each question should leverage two unique items from the Layouts and Containers functionality.
+- On at least one plot, allow the user to specify an input for a vertical or horizontal line that gets drawn on the chart. Create a use case that makes sense for your chart.
 
-After you click on the link, you will get a second email with the code.
 
-```
-Dear
-Jimmy,
+## Vocabulary/Lingo Challenge
 
-Here is your Google Cloud Coupon Code:
-0EV1-U46r-DRTF-F1V6
+Within your readme.md file in your repository and as a submitted .pdf or .html on Canvas, address the following items:
 
-Click
-[here]()
- to redeem.
+1. Explain the added value of using DataBricks in your Data Science process (using text, diagrams, and/or tables).
 
-Course/Project Information
-Instructor Name:
-Email Address:
-School:
-Brigham Young University-Idaho
-Course/project:
-Big Data Programming
-Activation Date:
-9/8/2025
-Redeem By:
-1/8/2026
-Coupon Valid Through:  9/8/2026
+- The beauty of using a platform such as Databricks for Data Science processes is that the entire workflow is allocated to one domain instead of separate platforms, as one can perform everything in ETL, to cleansing practices, jobs/automation patterns, ML Training and even deploy straight from a cloud-based first infrastructure which just streamlines the entire workflows. In addition to this, Databricks is extremely fast in its overall performance, coupled with seamless version control and no on premise equipment and suddenly there is a clear reason as to why it's the go to service platform now. 
 
-If you have any questions, please contact your course instructor as listed above.
+2. Compare and contrast PySpark to Pandas or the Tidyverse (using text, diagrams, and/or tables).
 
-Thanks,
-Google Cloud Education Programs Team
-```
+- Pandas & Tidyverse are ideal for smaller datasets for optimizing speed and performance, overall they are very intuitive to use with minimal issues for compatibility, but one limiting factor is that they are for localized usage only, whereas PySpark uses a cluster for compute (ie, cloudbased infrastructure that is distributed with way more ‘load power’ on-hand to use) alongside with being extremely fast with large datasets in particular as its just built for large-scale usage making it ideal for business applications. 
 
-After clicking the `here` link, you can enter the coupon code to get the credits assigned to your account.
+3. Explain Docker to somebody intelligent but not a tech person (using text, diagrams, and/or tables).
 
-### Setup your GCP app
+- When building Legos, you have all these different pieces in the box that need to fit together in a specific way to create the Lego Set. If you could package all those pieces together in a box with a specific instruction manual that ensures they fit perfectly every time you open it, no matter where you take it. Docker ensures that this happens no matter what. Docker creates a package for an application and all its dependencies to fit into a single container. Docker is the all-in-one platform for testing a program to ensure that it will work on anything that it is deployed on in the future; the instructions for Docker such as those used for Legos are hyper-specific to ensure that the end product is precisely the same, regardless of where or even who is building it.
 
-#### What is Cloud Run
 
- Cloud Run is a managed compute platform that enables stateless containers which are web accessible. Cloud Run is serverless which allows us to more cost effectively handle infrastructure management (in time and money).
+4. Compare GCP to AWS for cost, features, and ease of use.
 
-The developer workflow in Cloud Run can be done using VS Code:
-
-1. Containerize an app using Docker and run the container with Docker Desktop
-2. Build and test the app locally
-3. Push the image to Google Artifact Registry
-4. Deploy the containerized app to Cloud Run
-
-With Cloud Run, you can use two types of workflow: container-based workflow or a source-based workflow.[^1] We will be using the __container-based__ workflow.
-
-#### Deploying from the Web Terminal with a Github Repo
-
-1. Push your Docker established repository to Github
-2. After logging into your account go to the [GCP Console](https://console.cloud.google.com/).
-3. Select `Cloud Run` from the hamburger menu on the top left (see [picture](cloudrun.png)).
-4. Now you can `Deploy a Web Service` using `Connect repository (Github)`
-5. Select your options and connect your repo.
-6. Let it build (this can take a few minutes)
-
-You can see this repository's app hosted on Cloud Run [here](https://google-cloud-platform-726715325864.us-west1.run.app/) (assuming I still have some free credits).
-
-## Visual Studio Code Extensions
-
-You can use [Managing Extensions in Visual Studio Code](https://code.visualstudio.com/docs/editor/extension-marketplace) to learn how to install extensions. [Managing Extensions in Visual Studio Code](https://code.visualstudio.com/docs/editor/extension-marketplace) provides more background on extensions if needed. We will use the following extensions;
-
-- [Python - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=ms-python.python) extension heavily. 
-- [Container Tools](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers)
-- [Dev Container](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
-- [docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
-
-## Repository Files
-
-- [Dockerfile](Dockerfile) is the build script for our Docker Image
-- [docker-compose.yml](docker-compose.yml) provides an easy way to start our docker container.  [Docker Compose](https://docs.docker.com/compose/#:~:text=It%20is%20the%20key%20to,single%2C%20comprehensible%20YAML%20configuration%20file.) is _'the key to unlocking a streamlined and efficient development and deployment experience.'_
-- [requirements.txt](requirements.txt) is run from the [Dockerfile](Dockerfile) and installs the needed Python packages.
-- [README.md](README.md) is this file.  The `YAML` at the top is necessary for the Streamlit app to work correctly. Specifically the `app_port: 8501` is needed.  All other information can and should be manipulated.
-- [streamlit.py] is our Streamlit app.
-
-## References
-
-_I build trainings a bit like AI. I steal a bunch of stuff from other websites.  This is the list of websites I used to train myself._
-
-- [Build a Streamlit App](https://docs.streamlit.io/get-started/tutorials/create-an-app)
-- [Google Cloud Get & Redeem Education Credits](https://docs.cloud.google.com/billing/docs/how-to/edu-grants)
-- [Google Cloud Redeem Credits](https://docs.cloud.google.com/billing/docs/how-to/edu-grants#redeem)
-- [Cloud Run](https://cloud.google.com/run?hl=en)
-- [Install the Google Cloud CLI](https://docs.cloud.google.com/sdk/docs/install-sdk)
-- [Deploying Streamlit to GCP](https://medium.com/bitstrapped/step-by-step-guide-deploying-streamlit-apps-on-google-cloud-platform-gcp-96fca6a4f331)
-- [Ship docker to GCP](https://til.simonwillison.net/cloudrun/ship-dockerfile-to-cloud-run)
-- [Mapping custom domains](https://docs.cloud.google.com/run/docs/mapping-custom-domains)
-[Deploying a Streamlit App to Google Cloud Run](https://medium.com/@afouda.josue/deploying-a-streamlit-app-to-google-cloud-run-using-a-container-based-workflow-with-docker-and-fc9cb67a550a)
+- From my research within this space:
+- AWS vs Google Cloud (Cost):
+  - 90 day, $300 of credit for new users on GCP
+  - AWS has a free tier for 12 months; however, some services are always free on GCP but this was a weird nuance I found.
+  - They both offer pay as you go, or steep discounts for reserved instances, which is a huge plus, but in terms of cost effectiveness, this would really just depend on the specific services you are using and how much you are using them. (ie, for both small scale projects, either would be sufficient, however, large scale projects on GCP seems to be easier to manage costs overall from my limited usage experience compared to AWS).
+  
+- AWS vs Google Cloud (Features):
+    - AWS: AWS has features such as Lambda which assists with serverless computing, as well as other services such as S3 for storage, EC2 for computations, and it also supports a massive array of third-party integrations and other cloud services. It seems to be a more well-rounded service as its been around longer than GCP, overall though there is a steeper learning curve to it though which could offset some companies or users from using it though. 
+    - GCP: It advertises itself with 'better' AI and ML services with enhanced data analytic tools as well as full-scale access to Kubernetes as a part of their service offering, but overall, GCP seems to be more streamlined towards data-centric applications and services at least for the time being. From my limited experience, it was way easier to use from a UI/UX perspective when compared to AWS, so the mileage may vary between the two services dependent on what you are willing to learn and use long-term. 
+  
+- AWS vs Google Cloud (Ease of Use):
+    - Both of these services offer certifications as well as training guides and alot of user communities to help with setting up and troubleshooting, it seems like AWS has a much larger user base though due to its longer presence in the market. The UI for Google Cloud appears on the surface to be more intuitive and easier to navigate from my experience with the created projects/distribution that it offers, whereas AWS has a steeper learning curve as it can be difficult to manage all of the competing services but long-term seems to be more worthwhile as its got a track record of being the industry leader for uptime / reliability (ie, if we disregard the major outage from earlier this year). At the forefront, Google Cloud appears to be more user-friendly from the get-go, but AWS appears to be moreso streamlined towards handling large scale enterprise applications with more complex needs (ie, that differ and change, requiring alot of filtering/customization that currently Google Cloud doesn't offer as a part of its package).
+  

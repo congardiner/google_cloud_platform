@@ -4,7 +4,7 @@ services:
     build:
       dockerfile: Dockerfile
       context: .
-    container_name: streamlit-gcp-example
+    container_name: streamlit-app
     cpus: 2
     mem_limit: 2048m
     ports:
