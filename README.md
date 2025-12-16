@@ -11,6 +11,8 @@ You can read the details of the challenge at [challenge.md](challenge.md)
 - __Canvas Process:__ Each student will upload a `.pdf` or `.html` file with their results as described in [challenge.md](challenge.md)
 - Review the [Google Cloud Platform (GCP)](https://github.com/byuibigdata/google_cloud_platform) guide for setup instructions.
 
+- EDIT: ALL completed requirements, hosted in gcp.
+
 
 ## Notes & References
 
@@ -47,7 +49,9 @@ You can read the details of the challenge at [challenge.md](challenge.md)
 - On at least one plot, allow the user to specify an input for a vertical or horizontal line that gets drawn on the chart. Create a use case that makes sense for your chart.
 
 
+
 ## Vocabulary/Lingo Challenge
+
 
 Within your readme.md file in your repository and as a submitted .pdf or .html on Canvas, address the following items:
 
